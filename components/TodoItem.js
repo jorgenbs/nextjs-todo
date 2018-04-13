@@ -1,12 +1,15 @@
 import React from 'react';
 
-const TodoItem = ({ item, removeItem }) => {
+const TodoItem = ({ item, removeItem, checkItem }) => {
   return (
     <li>
       <div className="view">
-        <button className="complete yes" />
-        <label>{item}</label>
-        <button className="destroy" onClick={() => removeItem()} />
+        <button
+          className={`complete ${item.checked ? 'yes' : 'no'}`}
+          onClick={() => checkItem(item)}
+        />
+        <label>{item.description}</label>
+        <button className="destroy" onClick={() => removeItem(item)} />
       </div>
     </li>
   );

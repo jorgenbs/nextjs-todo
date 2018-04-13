@@ -9,20 +9,12 @@ class Page extends React.Component {
 
   componentWillUnmount() {}
 
-  componentDidMount() {
-    const hydrate = create({
-      storage: localStorage,
-      jsonify: true
-    });
-    hydrate('counter', this.props.store).then(() => {
-      this.props.store.increaseCounter();
-    });
-  }
+  componentDidMount() {}
 
   render() {
     return (
       <div>
-        <h1>{this.props.store.counter}</h1>
+        <h1>TODO-List</h1>
       </div>
     );
   }

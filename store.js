@@ -1,5 +1,6 @@
 import { action, observable } from 'mobx';
 import { persist, create } from 'mobx-persist';
+import TodoItemModel from './models/TodoItemModel';
 
 let store = null;
 
@@ -16,13 +17,25 @@ class Store {
   };
 
   @action
-  removeItem = index => {
-    this.todoItems.splice(index, 1);
+  removeItem = item => {
+    this.todoItems.splice(this.findItemIndex(item), 1);
   };
 
   @action
-  addItem = item => {
-    this.todoItems.push(item);
+  addItem = description => {
+    const todoItem = new TodoItemModel(description);
+    this.todoItems.push(todoItem);
+  };
+
+  @action
+  checkItem = item => {
+    const index = this.findItemIndex(item);
+    const newVal = !this.todoItems[index].checked;
+    this.todoItems[index].checked = newVal;
+  };
+
+  findItemIndex = item => {
+    return this.todoItems.findIndex(({ uuid }) => uuid == item.uuid);
   };
 }
 

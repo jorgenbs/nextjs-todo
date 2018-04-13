@@ -1,5 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import { create } from 'mobx-persist';
 
 import TodoItem from './TodoItem';
 
@@ -12,7 +13,15 @@ class TodoList extends React.Component {
       input: ''
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    const hydrate = create({
+      storage: localStorage,
+      jsonify: true
+    });
+    hydrate('counter', this.props.store).then(() => {
+      console.log('hydrated');
+    });
+  }
   _handleKeyPress(e) {
     if (e.key === 'Enter') {
       this.props.store.addItem(this.state.input);
@@ -43,7 +52,8 @@ class TodoList extends React.Component {
               <TodoItem
                 key={Math.random()}
                 item={item}
-                removeItem={() => this.props.store.removeItem(index)}
+                removeItem={this.props.store.removeItem}
+                checkItem={this.props.store.checkItem}
               />
             ))}
           </ul>
