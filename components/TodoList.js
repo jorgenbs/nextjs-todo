@@ -39,8 +39,12 @@ class TodoList extends React.Component {
         </header>
         <section id="main">
           <ul id="todo-list">
-            {this.props.store.todoItems.map(item => (
-              <TodoItem key={Math.random()} />
+            {this.props.store.todoItems.map((item, index) => (
+              <TodoItem
+                key={Math.random()}
+                item={item}
+                removeItem={() => this.props.store.removeItem(index)}
+              />
             ))}
           </ul>
         </section>

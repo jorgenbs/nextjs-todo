@@ -4,10 +4,6 @@ import { persist, create } from 'mobx-persist';
 let store = null;
 
 class Store {
-  @persist
-  @observable
-  counter = 0;
-
   @persist('list')
   @observable
   todoItems = [];
