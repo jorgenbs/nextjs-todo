@@ -1,6 +1,6 @@
 # See
 
-https://with-mobx-tsfjcljwng.now.sh/ (Dyno might be in frozen state, so let it load a while)
+https://with-mobx-xoruqxkoay.now.sh (Dyno might be in frozen state, so let it load a while)
 
 # Get started
 
