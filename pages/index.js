@@ -4,6 +4,7 @@ import Head from 'next/head';
 
 import { initStore } from '../store';
 import Page from '../components/Page';
+import TodoList from '../components/TodoList';
 
 export default class Counter extends React.Component {
   static getInitialProps({ req }) {
@@ -29,28 +30,8 @@ export default class Counter extends React.Component {
             />
             <link rel="stylesheet" href="/static/styles.css" />
           </Head>
-          {/* <Page title="Index Page" /> */}
-          <section id="todoapp">
-            <header id="header">
-              <h1>Todo</h1>
-              <input
-                id="new-todo"
-                placeholder="What needs to be done?"
-                autofocus=""
-              />
-            </header>
-            <section id="main">
-              <ul id="todo-list">
-                <li>
-                  <div class="view">
-                    <button class="complete yes" />
-                    <label>asdf</label>
-                    <button class="destroy" />
-                  </div>
-                </li>
-              </ul>
-            </section>
-          </section>
+          <Page title="Index Page" />
+          <TodoList />
         </div>
       </Provider>
     );
