@@ -4,39 +4,24 @@ import { persist, create } from 'mobx-persist';
 let store = null;
 
 class Store {
-  @observable lastUpdate = 0;
-  @observable light = false;
-
   @persist
   @observable
   counter = 0;
 
-  constructor(isServer, lastUpdate) {
-    this.lastUpdate = lastUpdate;
-  }
-
-  @action
-  start = () => {
-    this.timer = setInterval(() => {
-      this.lastUpdate = Date.now();
-      this.light = true;
-    }, 1000);
-  };
+  constructor(isServer) {}
 
   @action
   increaseCounter = () => {
     this.counter = this.counter + 1;
   };
-
-  stop = () => clearInterval(this.timer);
 }
 
-export function initStore(isServer, lastUpdate = Date.now()) {
+export function initStore(isServer) {
   if (isServer) {
-    return new Store(isServer, lastUpdate);
+    return new Store(isServer);
   } else {
     if (store === null) {
-      store = new Store(isServer, lastUpdate);
+      store = new Store(isServer);
     }
     return store;
   }
