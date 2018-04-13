@@ -25,6 +25,7 @@ class TodoList extends React.Component {
   _handleKeyPress(e) {
     if (e.key === 'Enter') {
       this.props.store.addItem(this.state.input);
+      this.setState({ input: '' });
     }
   }
   handleChange(event) {
@@ -53,6 +54,7 @@ class TodoList extends React.Component {
                 key={Math.random()}
                 item={item}
                 removeItem={this.props.store.removeItem}
+                checked={item.checked}
                 checkItem={this.props.store.checkItem}
               />
             ))}

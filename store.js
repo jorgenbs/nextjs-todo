@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx';
+import { action, observable, computed } from 'mobx';
 import { persist, create } from 'mobx-persist';
 import TodoItemModel from './models/TodoItemModel';
 
@@ -31,7 +31,12 @@ class Store {
   checkItem = item => {
     const index = this.findItemIndex(item);
     const newVal = !this.todoItems[index].checked;
-    this.todoItems[index].checked = newVal;
+    this.checkItemTwo(this.todoItems[index]);
+  };
+
+  @action
+  checkItemTwo = item => {
+    item.checked = !item.checked;
   };
 
   findItemIndex = item => {
