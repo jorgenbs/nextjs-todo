@@ -29,14 +29,11 @@ class Store {
 
   @action
   checkItem = item => {
+    // bit of a hack to make mobx-persist pick up on the change
+    const copy = this.todoItems.slice();
     const index = this.findItemIndex(item);
-    const newVal = !this.todoItems[index].checked;
-    this.checkItemTwo(this.todoItems[index]);
-  };
-
-  @action
-  checkItemTwo = item => {
-    item.checked = !item.checked;
+    copy[index].checked = true;
+    this.todoItems = copy;
   };
 
   findItemIndex = item => {
